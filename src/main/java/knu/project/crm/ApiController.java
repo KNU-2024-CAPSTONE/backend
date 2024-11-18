@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@RestController  // @Controller -> @RestController로 변경
 public class ApiController {
 
     private final ExternalApiService externalApiService;
@@ -19,6 +19,7 @@ public class ApiController {
         return externalApiService.getMemberLogs();
     }
 
+    // 필요한 경우 아래 메서드도 활성화
 //    @GetMapping("/fetch-purchase-logs")
 //    public List<PurchaseLogDto> fetchPurchaseLogs() {
 //        return externalApiService.getPurchaseLogs();

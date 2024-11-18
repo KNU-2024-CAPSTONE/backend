@@ -12,7 +12,7 @@ public class AddCouponService {
 
     private final RestTemplate restTemplate;
 
-    private static final String BASE_URL = "http://35.175.138.139:8081/api/database";
+    private static final String BASE_URL = "https://localhost:8081/api/database";
 
     public AddCouponService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
