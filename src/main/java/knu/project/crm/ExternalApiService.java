@@ -10,7 +10,7 @@ import java.util.List;
 public class ExternalApiService {
 
     private final RestTemplate restTemplate;
-    private static final String BASE_URL = "http://localhost:8081/api/database";
+    private static final String BASE_URL = "https://localhost:8081/api/database";
 
     public ExternalApiService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
