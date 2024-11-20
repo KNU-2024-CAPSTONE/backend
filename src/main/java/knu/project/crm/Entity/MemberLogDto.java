@@ -1,4 +1,4 @@
-package knu.project.crm;
+package knu.project.crm.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
