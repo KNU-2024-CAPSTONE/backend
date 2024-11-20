@@ -20,4 +20,4 @@ jobs:
 
       - name: 🚀 Run Deployment Script on Server
         run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_URL }} "bash /home/ec2-user/backend_deploy.sh"
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_URL }} "bash /home/ubuntu/backend_deploy.sh"
