@@ -1,6 +1,6 @@
-package knu.project.crm.Controller;
+package knu.project.crm.controller;
 
-import knu.project.crm.Service.RecommendService;
+import knu.project.crm.service.RecommendService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

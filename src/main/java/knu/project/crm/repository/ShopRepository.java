@@ -1,6 +1,6 @@
-package knu.project.crm.Repository;
+package knu.project.crm.repository;
 
-import knu.project.crm.Entity.Shop;
+import knu.project.crm.entity.Shop;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

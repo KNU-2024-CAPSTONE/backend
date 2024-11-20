@@ -1,7 +1,7 @@
-package knu.project.crm.Controller;
+package knu.project.crm.controller;
 
-import knu.project.crm.Service.ExternalApiService;
-import knu.project.crm.Entity.MemberLogDto;
+import knu.project.crm.service.ExternalApiService;
+import knu.project.crm.dto.MemberLogDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,4 +22,5 @@ public class MemberLogController {
         // 클라이언트로부터 shopId를 받아 ExternalApiService 호출
         return externalApiService.getMemberLogs(shopId);
     }
+
 }

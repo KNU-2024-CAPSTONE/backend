@@ -1,8 +1,7 @@
-package knu.project.crm.Controller;
+package knu.project.crm.controller;
 
-import knu.project.crm.Entity.PurchaseLogDto;
-import knu.project.crm.Service.ExternalApiService;
-import knu.project.crm.Entity.MemberLogDto;
+import knu.project.crm.dto.PurchaseLogDto;
+import knu.project.crm.service.ExternalApiService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

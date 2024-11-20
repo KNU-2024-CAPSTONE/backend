@@ -1,6 +1,5 @@
-package knu.project.crm.Service;
-
-import knu.project.crm.Entity.MemberLogDto;
+package knu.project.crm.service;
+import knu.project.crm.dto.MemberLogDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

@@ -1,9 +1,9 @@
-package knu.project.crm.Service;
+package knu.project.crm.service;
 
-import knu.project.crm.Entity.MemberLogDto;
-import knu.project.crm.Entity.PurchaseLogDto;
-import knu.project.crm.Entity.Shop;
-import knu.project.crm.Repository.ShopRepository;
+import knu.project.crm.dto.MemberLogDto;
+import knu.project.crm.dto.PurchaseLogDto;
+import knu.project.crm.entity.Shop;
+import knu.project.crm.repository.ShopRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.ResponseEntity;

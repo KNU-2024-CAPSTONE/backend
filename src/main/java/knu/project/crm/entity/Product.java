@@ -1,4 +1,4 @@
-package knu.project.crm.Entity;
+package knu.project.crm.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
