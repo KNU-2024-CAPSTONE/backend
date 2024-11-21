@@ -31,9 +31,9 @@ public class ExternalApiService {
 
     public List<MemberLogDto> getMemberLogs(String shopId) {
         // ShopId로 데이터베이스에서 ShopUrl 조회
-        // String baseUrl = getBaseUrlByShopId(shopId);
+        //String baseUrl = getBaseUrlByShopId(shopId);
         String baseUrl = "http://localhost:8081";
-        String url = baseUrl + "/api/database/member-log";
+        String url = baseUrl + "/member-log";
 
         // ResponseEntity<List<MemberLogDto>>로 응답 받기
         return restTemplate.exchange(
@@ -46,9 +46,9 @@ public class ExternalApiService {
 
     public List<PurchaseLogDto> getPurchaseLogDto(String shopId) {
         // ShopId로 데이터베이스에서 ShopUrl 조회
-        // String baseUrl = getBaseUrlByShopId(shopId);
+        //String baseUrl = getBaseUrlByShopId(shopId);
         String baseUrl = "http://localhost:8081";
-        String url = baseUrl + "/api/database/purchase-log";
+        String url = baseUrl + "/purchase-log";
 
         // ResponseEntity<List<PurchaseLogDto>>로 응답 받기
         return restTemplate.exchange(

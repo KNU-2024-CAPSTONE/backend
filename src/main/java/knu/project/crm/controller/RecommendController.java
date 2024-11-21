@@ -2,6 +2,7 @@ package knu.project.crm.controller;
 
 import knu.project.crm.service.RecommendService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedHashMap;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api/recommend")
 public class RecommendController {
     private final RecommendService recommendService;
 
@@ -16,7 +18,7 @@ public class RecommendController {
         this.recommendService = recommendService;
     }
 
-    @GetMapping("/api/recommend/popular-categories")
+    @GetMapping("/popular-categories")
     public Map<String, Map<String, Long>> getAllPopularCategories() {
         // Define age groups and genders
         List<int[]> ageGroups = List.of(
@@ -43,4 +45,7 @@ public class RecommendController {
 
         return result;
     }
+    //@GetMapping("/performance")
+
+
 }
