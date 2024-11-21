@@ -2,35 +2,25 @@ package knu.project.crm.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
+@Getter
 @Entity
 public class Shop {
+    // Getter and Setter for shopId
     @Id
     private String shopId;
+    // Getter and Setter for shopName
     private String shopName;
+    // Getter and Setter for shopUrl
     private String shopUrl;
-
-    // Getter and Setter for shopId
-    public String getShopId() {
-        return shopId;
-    }
 
     public void setShopId(String shopId) {
         this.shopId = shopId;
     }
 
-    // Getter and Setter for shopName
-    public String getShopName() {
-        return shopName;
-    }
-
     public void setShopName(String shopName) {
         this.shopName = shopName;
-    }
-
-    // Getter and Setter for shopUrl
-    public String getShopUrl() {
-        return shopUrl;
     }
 
     public void setShopUrl(String shopUrl) {

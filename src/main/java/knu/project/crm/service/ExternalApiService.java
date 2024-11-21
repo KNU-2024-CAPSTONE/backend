@@ -4,9 +4,10 @@ import knu.project.crm.dto.MemberLogDto;
 import knu.project.crm.dto.PurchaseLogDto;
 import knu.project.crm.entity.Shop;
 import knu.project.crm.repository.ShopRepository;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -34,11 +35,13 @@ public class ExternalApiService {
         String baseUrl = "http://localhost:8081";
         String url = baseUrl + "/api/database/member-log";
 
-        // ResponseEntity<List<MemberLogDto>>로 응답을 받음
-        ResponseEntity<List> response = restTemplate.getForEntity(url, List.class);
-
-        // 응답 본문에서 데이터 추출하여 반환
-        return response.getBody();
+        // ResponseEntity<List<MemberLogDto>>로 응답 받기
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<MemberLogDto>>() {}
+        ).getBody();
     }
 
     public List<PurchaseLogDto> getPurchaseLogDto(String shopId) {
@@ -47,10 +50,12 @@ public class ExternalApiService {
         String baseUrl = "http://localhost:8081";
         String url = baseUrl + "/api/database/purchase-log";
 
-        // ResponseEntity<List<MemberLogDto>>로 응답을 받음
-        ResponseEntity<List> response = restTemplate.getForEntity(url, List.class);
-
-        // 응답 본문에서 데이터 추출하여 반환
-        return response.getBody();
+        // ResponseEntity<List<PurchaseLogDto>>로 응답 받기
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<PurchaseLogDto>>() {}
+        ).getBody();
     }
 }

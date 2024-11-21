@@ -22,20 +22,20 @@ public class StatisticsController {
     }
 
     @GetMapping("/subscribers")
-    public ResponseEntity<Map<String, Map<String, Long>>> getSubscribersCountByDate(
+    public ResponseEntity<Map<String, Map<String, Long>>> getSubscribersCount(
             @RequestParam(defaultValue = "false") boolean isMonthly) {
         // 서비스로부터 가입자 수 데이터를 받아옴
-        Map<String, Map<String, Long>> result = statisticsService.getSubscriberCountByDate(isMonthly);
+        Map<String, Map<String, Long>> result = statisticsService.getSubscriberCount(isMonthly);
 
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/sales")
-    public ResponseEntity<Map<String, ?>> getSales(@RequestParam boolean isWeekly) {
-        if (isWeekly) {
-            return ResponseEntity.ok(purchaseLogService.getMonthlyWeeklySales());
-        } else {
-            return ResponseEntity.ok(purchaseLogService.getMonthlySales());
-        }
+    public ResponseEntity<Map<String, Map<String, Integer>>> getSales(
+            @RequestParam(defaultValue = "false") boolean isMonthly) {
+        // 서비스로부터 매출액 데이터를 받아옴
+        Map<String, Map<String, Integer>> result = statisticsService.getSalesStatistics(isMonthly);
+
+        return ResponseEntity.ok(result);
     }
 }

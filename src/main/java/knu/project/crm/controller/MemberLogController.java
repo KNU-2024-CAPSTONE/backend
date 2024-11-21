@@ -1,7 +1,7 @@
 package knu.project.crm.controller;
 
-import knu.project.crm.service.ExternalApiService;
 import knu.project.crm.dto.MemberLogDto;
+import knu.project.crm.service.ExternalApiService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
