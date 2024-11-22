@@ -10,14 +10,18 @@ import java.util.stream.Collectors;
 @Service
 public class RecommendService {
     private final RestTemplate restTemplate;
+    private final ExternalApiService externalApiService;
 
-    public RecommendService(RestTemplate restTemplate) {
+    public RecommendService(RestTemplate restTemplate, ExternalApiService externalApiService) {
         this.restTemplate = restTemplate;
+        this.externalApiService = externalApiService;
     }
 
-    public Map<String, Long> getPopularCategoriesByGenderAndAge(String gender, int minAge, int maxAge) {
-        // 외부 API 호출 (구매 정보 가져오기)
-        String url = "http://localhost:8081/api/database/purchase-log";
+    public Map<String, Long> getPopularCategoriesByGenderAndAge(Integer shopId, String gender, int minAge, int maxAge) {
+        // ShopUrl을 shopId로 가져오기
+        String shopUrl = externalApiService.getShopUrlByShopId(shopId);
+        // 외부 API 호출
+        String url = shopUrl + "/api/database/purchase-log";
         PurchaseLogDto[] purchaseLogs = restTemplate.getForObject(url, PurchaseLogDto[].class);
 
         if (purchaseLogs == null) {

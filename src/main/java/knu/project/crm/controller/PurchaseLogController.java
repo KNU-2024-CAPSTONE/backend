@@ -2,24 +2,25 @@ package knu.project.crm.controller;
 
 import knu.project.crm.dto.PurchaseLogDto;
 import knu.project.crm.service.ExternalApiService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import knu.project.crm.service.PurchaseLogService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("shop")
 public class PurchaseLogController {
 
     private final ExternalApiService externalApiService;
+    private final PurchaseLogService purchaseLogService;
 
-    public PurchaseLogController(ExternalApiService externalApiService) {
+    public PurchaseLogController(ExternalApiService externalApiService, PurchaseLogService purchaseLogService) {
         this.externalApiService = externalApiService;
+        this.purchaseLogService = purchaseLogService;
     }
 
-    @GetMapping("/api/purchase-log")
-    public List<PurchaseLogDto> getPurchaseLogDto(@RequestParam String shopId) {
-        // 클라이언트로부터 shopId를 받아 ExternalApiService 호출
-        return externalApiService.getPurchaseLogDto(shopId);
+    @GetMapping("statistics/{shopId}/purchase-log")
+    public List<PurchaseLogDto> getPurchaseLogs(@PathVariable Integer shopId) {
+        return purchaseLogService.getAllPurchaseLogs(shopId);
     }
 }

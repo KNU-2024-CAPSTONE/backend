@@ -3,10 +3,9 @@ package knu.project.crm.controller;
 import knu.project.crm.entity.Member;
 import knu.project.crm.entity.OutfluxAlgorithm;
 import knu.project.crm.dto.AccessLogDto;
+import knu.project.crm.service.MemberLogService;
 import knu.project.crm.service.OutfluxService;
-import knu.project.crm.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -15,14 +14,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/outflux")
+@RequestMapping("shop/{shopId}/outflux")
 public class OutfluxController {
 
     @Autowired
     private OutfluxService outfluxService;
 
     @Autowired
-    private MemberService memberService;  // MemberService를 주입하여 이메일로 회원 정보 조회
+    private MemberLogService memberLogService;  // MemberService를 주입하여 이메일로 회원 정보 조회
 
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -51,7 +50,7 @@ public class OutfluxController {
     }
 
     private void saveOutfluxStatus(AccessLogDto accessLog, boolean isOutflux) {
-        Member member = memberService.findByEmail(accessLog.getEmail());  // 이메일로 회원 조회
+        Member member = memberLogService.findByEmail(accessLog.getEmail());  // 이메일로 회원 조회
 
         if (member != null) {
             OutfluxAlgorithm outflux = new OutfluxAlgorithm();

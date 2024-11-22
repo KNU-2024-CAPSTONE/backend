@@ -2,6 +2,7 @@ package knu.project.crm.controller;
 
 import knu.project.crm.service.RecommendService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/recommend")
+@RequestMapping("shop/{shopId}/recommend")
 public class RecommendController {
     private final RecommendService recommendService;
 
@@ -19,7 +20,7 @@ public class RecommendController {
     }
 
     @GetMapping("/popular-categories")
-    public Map<String, Map<String, Long>> getAllPopularCategories() {
+    public Map<String, Map<String, Long>> getAllPopularCategories(@PathVariable Integer shopId) {
         // Define age groups and genders
         List<int[]> ageGroups = List.of(
                 new int[]{10, 19},
@@ -38,7 +39,7 @@ public class RecommendController {
             for (String gender : genders) {
                 String key = ageGroup[0] + "대 " + (gender.equals("male") ? "남자" : "여자");
                 Map<String, Long> popularCategories = recommendService.getPopularCategoriesByGenderAndAge(
-                        gender, ageGroup[0], ageGroup[1]);
+                        shopId, gender, ageGroup[0], ageGroup[1]);
                 result.put(key, popularCategories);
             }
         }
