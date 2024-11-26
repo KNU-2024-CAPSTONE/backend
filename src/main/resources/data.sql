@@ -1,4 +1,4 @@
-INSERT INTO shop(name, uri) VALUES ('hyundai', 'http://localhost:8081');
+INSERT INTO shop(name, uri) VALUES ('test1', 'http://localhost:8081');
 
 INSERT INTO product_recommend(is_star_count, is_review, is_post_date, k, conversion_rate, shop_id) values (true, true, true, 4, 45 , 1);
 
