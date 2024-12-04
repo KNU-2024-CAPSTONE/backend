@@ -1,5 +1,7 @@
 package knu.project.crm.outflux.service;
 
+import jakarta.mail.MessagingException;
+import knu.project.crm.common.service.MailService;
 import knu.project.crm.outflux.dto.ai.*;
 import knu.project.crm.shop.entity.Shop;
 import knu.project.crm.common.exception.NotFoundException;
@@ -28,9 +30,11 @@ public class OutfluxService {
     private final CouponLogRepository couponLogRepository;
     private final ProductRecommendRepository productRecommendRepository;
     private final RestTemplateService restTemplateService;
+    private final MailService mailService;
 
-    public OutfluxService(ShopRepository shopRepository, OutfluxRepository outfluxRepository, CouponLogRepository couponLogRepository, ProductRecommendRepository productRecommendRepository, RestTemplateService restTemplateService) {
+    public OutfluxService(ShopRepository shopRepository, OutfluxRepository outfluxRepository, CouponLogRepository couponLogRepository, ProductRecommendRepository productRecommendRepository, RestTemplateService restTemplateService, MailService mailService) {
         this.restTemplateService = restTemplateService;
+        this.mailService = mailService;
         this.shopRepository = shopRepository;
         this.outfluxRepository = outfluxRepository;
         this.couponLogRepository = couponLogRepository;
@@ -98,7 +102,7 @@ public class OutfluxService {
     }
 
     @Scheduled(cron = "0 0 0 * * ?")
-    public void updateCouponLog(){
+    public void updateCouponLog() throws MessagingException {
         List<Shop> shopList = shopRepository.findAll();
 
         for(Shop shop: shopList){
@@ -114,8 +118,9 @@ public class OutfluxService {
                 Optional<CouponRestResponse> optional = getCouponForAi(shopId, purchaseLogList);
                 if (optional.isEmpty()) continue;
                 CouponRestResponse couponRestResponse = optional.get();
-                //CouponLog에 저장, 쿠폰 전송
+                //CouponLog에 저장, 쿠폰 전송 및 메일 발송
                 addCouponLog(shop, memberId, couponRestResponse, memberInfo);
+                mailService.sendMail(memberInfo.getEmail(), couponRestResponse);
 
             }
         }
