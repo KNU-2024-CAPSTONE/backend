@@ -120,14 +120,12 @@ public class OutfluxService {
                 CouponRestResponse couponRestResponse = optional.get();
                 //CouponLog에 저장, 쿠폰 전송 및 메일 발송
                 addCouponLog(shop, memberId, couponRestResponse, memberInfo);
-                mailService.sendMail(memberInfo.getEmail(), couponRestResponse);
-
             }
         }
     }
 
     @Transactional
-    public void addCouponLog(Shop shop, Long memberId, CouponRestResponse couponRestResponse, MemberInfoRestResponse memberInfo){
+    public void addCouponLog(Shop shop, Long memberId, CouponRestResponse couponRestResponse, MemberInfoRestResponse memberInfo) throws MessagingException {
         Long shopId = shop.getId();
         Outflux outflux = outfluxRepository.findByShopId(shopId).orElseThrow(() -> new NotFoundException("쇼핑몰에 해당하는 이탈방지 파라미터 값을 찾을 수 없습니다."));
 
@@ -139,6 +137,7 @@ public class OutfluxService {
             AddCouponRequest addCouponRequest = new AddCouponRequest(memberId, couponRestResponse.category(), couponRestResponse.code(), couponRestResponse.discount());
             restTemplateService.postCoupon(shop, addCouponRequest);
             //smtp 메일 전송
+            mailService.sendMail(memberInfo.getEmail(), couponRestResponse);
         }
     }
 

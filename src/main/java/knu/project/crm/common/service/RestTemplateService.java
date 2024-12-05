@@ -112,7 +112,7 @@ public class RestTemplateService {
                 HttpMethod.POST,
                 httpEntity,
                 Void.class
-        ).getBody();
+        );
     }
 
     public List<PurchaseLogRequest> getPurchaseLogByMemberId(Shop shop, Long memberId){
