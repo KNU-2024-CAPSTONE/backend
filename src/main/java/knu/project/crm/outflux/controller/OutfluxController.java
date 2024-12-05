@@ -1,5 +1,6 @@
 package knu.project.crm.outflux.controller;
 
+import jakarta.mail.MessagingException;
 import knu.project.crm.outflux.dto.*;
 import knu.project.crm.outflux.service.OutfluxService;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,7 @@ public class OutfluxController {
     }
 
     @GetMapping("/test")
-    public ResponseEntity<?> test(){
+    public ResponseEntity<?> test() throws MessagingException {
         outfluxService.updateCouponLog();
         return ResponseEntity.ok("완료");
     }
