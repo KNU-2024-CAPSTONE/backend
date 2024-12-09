@@ -39,9 +39,16 @@ public class OutfluxController {
         return ResponseEntity.ok(outfluxService.getLoyalAndOutfluxCustomers(shopId));
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<?> test() throws MessagingException {
+    @GetMapping("/test-outflux")
+    public ResponseEntity<?> testOutflux() throws MessagingException {
         outfluxService.updateCouponLog();
-        return ResponseEntity.ok("완료");
+        return ResponseEntity.ok("쿠폰 발급 완료");
     }
+
+    @GetMapping("/test-recommend")
+    public ResponseEntity<?> testRecommend() {
+        outfluxService.updateRecommend();
+        return ResponseEntity.ok("상품 추천완료");
+    }
+}
 }
