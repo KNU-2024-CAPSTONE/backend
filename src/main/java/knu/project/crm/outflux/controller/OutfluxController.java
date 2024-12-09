@@ -51,4 +51,3 @@ public class OutfluxController {
         return ResponseEntity.ok("상품 추천완료");
     }
 }
-}
